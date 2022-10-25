@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20221021 12:37:12.761" rpa="true" schemaversion="3">
+<suite id="s1" name="Tasks" source="d:\FHAI\robot testing\tasks.robot">
+<test id="s1-t1" name="Main" line="49">
+<kw name="Open Available Browser" library="RPA.Browser">
+<doc>Attempts to open a browser on the user's device from a set of
+supported browsers. Automatically downloads a corresponding webdriver
+if none is already installed.</doc>
+<msg timestamp="20221021 12:37:20.291" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20221021 12:37:20.301" level="INFO">====== WebDriver manager ======</msg>
+<msg timestamp="20221021 12:37:22.859" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20221021 12:37:24.404" level="INFO">Created Chrome browser with arguments: --disable-dev-shm-usage --disable-web-security --allow-running-insecure-content --no-sandbox</msg>
+<msg timestamp="20221021 12:37:24.404" level="INFO" html="true">&lt;p&gt;Attempted combinations:&lt;/p&gt;&lt;div class="doc"&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Browser&lt;/th&gt;&lt;th&gt;Download&lt;/th&gt;&lt;th&gt;Error&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Chrome&lt;/td&gt;&lt;td&gt;False&lt;/td&gt;&lt;td&gt;Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Chrome&lt;/td&gt;&lt;td&gt;True&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<status status="PASS" starttime="20221021 12:37:20.290" endtime="20221021 12:37:24.404"/>
+</kw>
+<kw name="Read Excel">
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>D:\\FHAI\\robot testing\\excel\\Book1.xlsx</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20221021 12:37:24.448" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x000001DF09B73640&gt;</msg>
+<status status="PASS" starttime="20221021 12:37:24.415" endtime="20221021 12:37:24.449"/>
+</kw>
+<kw name="Read Worksheet" library="RPA.Excel.Files">
+<var>${List}</var>
+<arg>header=true</arg>
+<doc>Read the content of a worksheet into a list of dictionaries.</doc>
+<msg timestamp="20221021 12:37:24.452" level="INFO">${List} = [{'make': 'ford', 'model': 'mustang', 'max_km': 60000}, {'make': 'porsche', 'model': 911, 'max_km': 20000}, {'make': 'tesla', 'model': 'model 3', 'max_km': 20000}]</msg>
+<status status="PASS" starttime="20221021 12:37:24.450" endtime="20221021 12:37:24.452"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${List}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20221021 12:37:24.452" endtime="20221021 12:37:24.455"/>
+</kw>
+<kw name="Close Workbook" library="RPA.Excel.Files">
+<doc>Close the active workbook.</doc>
+<msg timestamp="20221021 12:37:24.457" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x000001DF09B73640&gt;</msg>
+<status status="PASS" starttime="20221021 12:37:24.456" endtime="20221021 12:37:24.457"/>
+</kw>
+<for flavor="IN">
+<var>${index}</var>
+<value>@{List}</value>
+<iter>
+<var name="${index}">{'make': 'ford', 'model': 'mustang', 'max_km': 60000}</var>
+<kw name="Search cars">
+<arg>${index}</arg>
+<kw name="Go To" library="RPA.Browser">
+<arg>https://carvago.com/</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20221021 12:37:24.464" level="INFO">Opening url 'https://carvago.com/'</msg>
+<status status="PASS" starttime="20221021 12:37:24.463" endtime="20221021 12:37:37.087"/>
+</kw>
+<kw name="Maximize Browser Window" library="RPA.Browser">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20221021 12:37:37.088" endtime="20221021 12:37:37.360"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="RPA.Browser">
+<arg>xpath:/html/body/div[1]/div/main/div[2]/div[1]/div[1]/div/div[1]/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20221021 12:37:37.361" endtime="20221021 12:37:37.566"/>
+</kw>
+<kw name="Click Element" library="RPA.Browser">
+<arg>xpath:/html/body/div[1]/div/main/div[2]/div[1]/div[1]/div/div[1]/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221021 12:37:37.567" level="INFO">Clicking element 'xpath:/html/body/div[1]/div/main/div[2]/div[1]/div[1]/div/div[1]/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]'.</msg>
+<status status="PASS" starttime="20221021 12:37:37.566" endtime="20221021 12:37:37.797"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>${index}[make]</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:37:37.799" level="INFO">Sending key(s) ('ford',) to page.</msg>
+<msg timestamp="20221021 12:37:37.799" level="INFO">Sending keys ford</msg>
+<status status="PASS" starttime="20221021 12:37:37.797" endtime="20221021 12:37:37.971"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:37:38.476" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:37:37.971" endtime="20221021 12:37:38.476"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:37:38.478" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:37:38.479" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:37:38.479" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:37:38.477" endtime="20221021 12:37:38.602"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:37:38.604" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:37:38.604" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:37:38.605" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:37:38.602" endtime="20221021 12:37:38.642"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:37:39.155" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:37:38.643" endtime="20221021 12:37:39.155"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>${index}[model]</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:37:39.159" level="INFO">Sending key(s) ('mustang',) to page.</msg>
+<msg timestamp="20221021 12:37:39.159" level="INFO">Sending keys mustang</msg>
+<status status="PASS" starttime="20221021 12:37:39.157" endtime="20221021 12:37:39.317"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:37:39.829" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:37:39.317" endtime="20221021 12:37:39.829"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:37:39.831" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:37:39.831" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:37:39.832" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:37:39.830" endtime="20221021 12:37:39.966"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:37:39.968" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:37:39.968" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:37:39.969" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:37:39.967" endtime="20221021 12:37:40.053"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:37:40.567" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:37:40.054" endtime="20221021 12:37:40.567"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>${index}[max_km]</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:37:40.569" level="INFO">Sending key(s) ('60000',) to page.</msg>
+<msg timestamp="20221021 12:37:40.569" level="INFO">Sending keys 60000</msg>
+<status status="PASS" starttime="20221021 12:37:40.568" endtime="20221021 12:37:40.915"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:37:41.430" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:37:40.916" endtime="20221021 12:37:41.430"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:37:41.431" level="INFO">Sending key(s) ('ENTER',) to page.</msg>
+<msg timestamp="20221021 12:37:41.431" level="INFO">Pressing special key ENTER to browser.</msg>
+<msg timestamp="20221021 12:37:41.432" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20221021 12:37:41.431" endtime="20221021 12:37:41.598"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3000ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:37:44.610" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20221021 12:37:41.599" endtime="20221021 12:37:44.610"/>
+</kw>
+<kw name="Click Element" library="RPA.Browser">
+<arg>xpath:/html/body/div[1]/div/main/div[2]/div[2]/section/div/div[1]/div[3]/div[1]/div/div/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221021 12:37:44.611" level="INFO">Clicking element 'xpath:/html/body/div[1]/div/main/div[2]/div[2]/section/div/div[1]/div[3]/div[1]/div/div/div'.</msg>
+<status status="PASS" starttime="20221021 12:37:44.610" endtime="20221021 12:37:48.438"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3000ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:37:51.449" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20221021 12:37:48.438" endtime="20221021 12:37:51.449"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="RPA.Browser">
+<arg>xpath:/html/body/div[8]/div/div/div/div[2]/div/div[6]/p</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20221021 12:37:51.450" endtime="20221021 12:37:51.481"/>
+</kw>
+<kw name="Click Element" library="RPA.Browser">
+<arg>xpath:/html/body/div[8]/div/div/div/div[2]/div/div[6]/p</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221021 12:37:51.482" level="INFO">Clicking element 'xpath:/html/body/div[8]/div/div/div/div[2]/div/div[6]/p'.</msg>
+<status status="PASS" starttime="20221021 12:37:51.482" endtime="20221021 12:37:52.152"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3000ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:37:55.161" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20221021 12:37:52.152" endtime="20221021 12:37:55.161"/>
+</kw>
+<status status="PASS" starttime="20221021 12:37:24.461" endtime="20221021 12:37:55.162"/>
+</kw>
+<status status="PASS" starttime="20221021 12:37:24.458" endtime="20221021 12:37:55.162"/>
+</iter>
+<iter>
+<var name="${index}">{'make': 'porsche', 'model': 911, 'max_km': 20000}</var>
+<kw name="Search cars">
+<arg>${index}</arg>
+<kw name="Go To" library="RPA.Browser">
+<arg>https://carvago.com/</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20221021 12:37:55.164" level="INFO">Opening url 'https://carvago.com/'</msg>
+<status status="PASS" starttime="20221021 12:37:55.164" endtime="20221021 12:37:59.602"/>
+</kw>
+<kw name="Maximize Browser Window" library="RPA.Browser">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20221021 12:37:59.602" endtime="20221021 12:37:59.610"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="RPA.Browser">
+<arg>xpath:/html/body/div[1]/div/main/div[2]/div[1]/div[1]/div/div[1]/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20221021 12:37:59.610" endtime="20221021 12:37:59.647"/>
+</kw>
+<kw name="Click Element" library="RPA.Browser">
+<arg>xpath:/html/body/div[1]/div/main/div[2]/div[1]/div[1]/div/div[1]/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221021 12:37:59.649" level="INFO">Clicking element 'xpath:/html/body/div[1]/div/main/div[2]/div[1]/div[1]/div/div[1]/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]'.</msg>
+<status status="PASS" starttime="20221021 12:37:59.648" endtime="20221021 12:37:59.809"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>${index}[make]</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:37:59.810" level="INFO">Sending key(s) ('porsche',) to page.</msg>
+<msg timestamp="20221021 12:37:59.810" level="INFO">Sending keys porsche</msg>
+<status status="PASS" starttime="20221021 12:37:59.809" endtime="20221021 12:38:00.071"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:00.578" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:38:00.072" endtime="20221021 12:38:00.578"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:00.580" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:38:00.581" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:38:00.581" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:38:00.579" endtime="20221021 12:38:00.677"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:00.680" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:38:00.681" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:38:00.681" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:38:00.678" endtime="20221021 12:38:00.709"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:01.215" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:38:00.709" endtime="20221021 12:38:01.215"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>${index}[model]</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:01.217" level="INFO">Sending key(s) ('911',) to page.</msg>
+<msg timestamp="20221021 12:38:01.218" level="INFO">Sending keys 911</msg>
+<status status="PASS" starttime="20221021 12:38:01.216" endtime="20221021 12:38:01.297"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:01.802" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:38:01.298" endtime="20221021 12:38:01.802"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:01.803" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:38:01.803" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:38:01.804" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:38:01.802" endtime="20221021 12:38:01.887"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:01.890" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:38:01.890" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:38:01.890" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:38:01.888" endtime="20221021 12:38:01.935"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:02.446" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:38:01.936" endtime="20221021 12:38:02.446"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>${index}[max_km]</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:02.448" level="INFO">Sending key(s) ('20000',) to page.</msg>
+<msg timestamp="20221021 12:38:02.448" level="INFO">Sending keys 20000</msg>
+<status status="PASS" starttime="20221021 12:38:02.447" endtime="20221021 12:38:02.731"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:03.247" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:38:02.732" endtime="20221021 12:38:03.247"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:03.249" level="INFO">Sending key(s) ('ENTER',) to page.</msg>
+<msg timestamp="20221021 12:38:03.249" level="INFO">Pressing special key ENTER to browser.</msg>
+<msg timestamp="20221021 12:38:03.249" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20221021 12:38:03.248" endtime="20221021 12:38:03.385"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3000ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:06.398" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20221021 12:38:03.385" endtime="20221021 12:38:06.399"/>
+</kw>
+<kw name="Click Element" library="RPA.Browser">
+<arg>xpath:/html/body/div[1]/div/main/div[2]/div[2]/section/div/div[1]/div[3]/div[1]/div/div/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221021 12:38:06.400" level="INFO">Clicking element 'xpath:/html/body/div[1]/div/main/div[2]/div[2]/section/div/div[1]/div[3]/div[1]/div/div/div'.</msg>
+<status status="PASS" starttime="20221021 12:38:06.399" endtime="20221021 12:38:10.553"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3000ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:13.569" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20221021 12:38:10.554" endtime="20221021 12:38:13.569"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="RPA.Browser">
+<arg>xpath:/html/body/div[8]/div/div/div/div[2]/div/div[6]/p</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20221021 12:38:13.570" endtime="20221021 12:38:13.595"/>
+</kw>
+<kw name="Click Element" library="RPA.Browser">
+<arg>xpath:/html/body/div[8]/div/div/div/div[2]/div/div[6]/p</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221021 12:38:13.596" level="INFO">Clicking element 'xpath:/html/body/div[8]/div/div/div/div[2]/div/div[6]/p'.</msg>
+<status status="PASS" starttime="20221021 12:38:13.595" endtime="20221021 12:38:14.312"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3000ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:17.323" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20221021 12:38:14.313" endtime="20221021 12:38:17.323"/>
+</kw>
+<status status="PASS" starttime="20221021 12:37:55.163" endtime="20221021 12:38:17.324"/>
+</kw>
+<status status="PASS" starttime="20221021 12:37:55.162" endtime="20221021 12:38:17.324"/>
+</iter>
+<iter>
+<var name="${index}">{'make': 'tesla', 'model': 'model 3', 'max_km': 20000}</var>
+<kw name="Search cars">
+<arg>${index}</arg>
+<kw name="Go To" library="RPA.Browser">
+<arg>https://carvago.com/</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20221021 12:38:17.325" level="INFO">Opening url 'https://carvago.com/'</msg>
+<status status="PASS" starttime="20221021 12:38:17.325" endtime="20221021 12:38:21.778"/>
+</kw>
+<kw name="Maximize Browser Window" library="RPA.Browser">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20221021 12:38:21.779" endtime="20221021 12:38:21.788"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="RPA.Browser">
+<arg>xpath:/html/body/div[1]/div/main/div[2]/div[1]/div[1]/div/div[1]/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20221021 12:38:21.788" endtime="20221021 12:38:21.812"/>
+</kw>
+<kw name="Click Element" library="RPA.Browser">
+<arg>xpath:/html/body/div[1]/div/main/div[2]/div[1]/div[1]/div/div[1]/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221021 12:38:21.813" level="INFO">Clicking element 'xpath:/html/body/div[1]/div/main/div[2]/div[1]/div[1]/div/div[1]/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]'.</msg>
+<status status="PASS" starttime="20221021 12:38:21.812" endtime="20221021 12:38:21.933"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>${index}[make]</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:21.937" level="INFO">Sending key(s) ('tesla',) to page.</msg>
+<msg timestamp="20221021 12:38:21.938" level="INFO">Sending keys tesla</msg>
+<status status="PASS" starttime="20221021 12:38:21.935" endtime="20221021 12:38:22.093"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:22.604" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:38:22.093" endtime="20221021 12:38:22.604"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:22.605" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:38:22.606" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:38:22.606" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:38:22.605" endtime="20221021 12:38:22.702"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:22.704" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:38:22.704" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:38:22.704" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:38:22.703" endtime="20221021 12:38:22.726"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:23.230" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:38:22.726" endtime="20221021 12:38:23.231"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>${index}[model]</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:23.233" level="INFO">Sending key(s) ('model 3',) to page.</msg>
+<msg timestamp="20221021 12:38:23.234" level="INFO">Sending keys model 3</msg>
+<status status="PASS" starttime="20221021 12:38:23.232" endtime="20221021 12:38:23.339"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:23.851" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:38:23.340" endtime="20221021 12:38:23.851"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:23.852" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:38:23.852" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:38:23.853" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:38:23.852" endtime="20221021 12:38:23.925"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>TAB</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:23.929" level="INFO">Sending key(s) ('TAB',) to page.</msg>
+<msg timestamp="20221021 12:38:23.931" level="INFO">Pressing special key TAB to browser.</msg>
+<msg timestamp="20221021 12:38:23.932" level="INFO">Releasing special key TAB.</msg>
+<status status="PASS" starttime="20221021 12:38:23.926" endtime="20221021 12:38:23.971"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:24.476" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:38:23.972" endtime="20221021 12:38:24.476"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>${index}[max_km]</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:24.477" level="INFO">Sending key(s) ('20000',) to page.</msg>
+<msg timestamp="20221021 12:38:24.479" level="INFO">Sending keys 20000</msg>
+<status status="PASS" starttime="20221021 12:38:24.477" endtime="20221021 12:38:24.774"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:25.287" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20221021 12:38:24.775" endtime="20221021 12:38:25.287"/>
+</kw>
+<kw name="Press Keys" library="RPA.Browser">
+<arg>NONE</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20221021 12:38:25.288" level="INFO">Sending key(s) ('ENTER',) to page.</msg>
+<msg timestamp="20221021 12:38:25.289" level="INFO">Pressing special key ENTER to browser.</msg>
+<msg timestamp="20221021 12:38:25.289" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20221021 12:38:25.288" endtime="20221021 12:38:25.416"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3000ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:28.427" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20221021 12:38:25.417" endtime="20221021 12:38:28.427"/>
+</kw>
+<kw name="Click Element" library="RPA.Browser">
+<arg>xpath:/html/body/div[1]/div/main/div[2]/div[2]/section/div/div[1]/div[3]/div[1]/div/div/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221021 12:38:28.429" level="INFO">Clicking element 'xpath:/html/body/div[1]/div/main/div[2]/div[2]/section/div/div[1]/div[3]/div[1]/div/div/div'.</msg>
+<status status="PASS" starttime="20221021 12:38:28.428" endtime="20221021 12:38:30.529"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3000ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:33.534" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20221021 12:38:30.529" endtime="20221021 12:38:33.534"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="RPA.Browser">
+<arg>xpath:/html/body/div[8]/div/div/div/div[2]/div/div[6]/p</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20221021 12:38:33.535" endtime="20221021 12:38:33.562"/>
+</kw>
+<kw name="Click Element" library="RPA.Browser">
+<arg>xpath:/html/body/div[8]/div/div/div/div[2]/div/div[6]/p</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221021 12:38:33.563" level="INFO">Clicking element 'xpath:/html/body/div[8]/div/div/div/div[2]/div/div[6]/p'.</msg>
+<status status="PASS" starttime="20221021 12:38:33.562" endtime="20221021 12:38:35.842"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3000ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221021 12:38:38.853" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20221021 12:38:35.842" endtime="20221021 12:38:38.853"/>
+</kw>
+<status status="PASS" starttime="20221021 12:38:17.324" endtime="20221021 12:38:38.854"/>
+</kw>
+<status status="PASS" starttime="20221021 12:38:17.324" endtime="20221021 12:38:38.854"/>
+</iter>
+<status status="PASS" starttime="20221021 12:37:24.457" endtime="20221021 12:38:38.854"/>
+</for>
+<status status="PASS" starttime="20221021 12:37:24.414" endtime="20221021 12:38:38.854"/>
+</kw>
+<status status="PASS" starttime="20221021 12:37:20.289" endtime="20221021 12:38:38.856"/>
+</test>
+<doc>Template robot main suite.</doc>
+<status status="PASS" starttime="20221021 12:37:12.779" endtime="20221021 12:38:38.861"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20221021 12:37:14.221" level="WARN">This is a deprecated import that will be removed in favor of RPA.Browser.Selenium</msg>
+</errors>
+</robot>
